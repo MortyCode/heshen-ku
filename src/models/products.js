@@ -6,4 +6,4 @@ export default {
         return state.filter(item => item.id !== id);
       },
     },
-  };
+};

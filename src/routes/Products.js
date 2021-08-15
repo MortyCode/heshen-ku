@@ -3,6 +3,8 @@ import { connect } from 'dva';
 import ProductList from '../components/ProductList';
 import { Button } from 'antd';
 
+
+
 // const Products = ({ dispatch, products }) => {
 //   function handleDelete(id) {
 //     dispatch({
@@ -48,12 +50,13 @@ export default class Products extends React.Component {
         const {products} = this.props;
         return (
             <div>
-              <Button onClick={this.tiaozhuan}>sassasas</Button>
+              <Button onClick={this.tiaozhuan}>home</Button>
               <h2>List of Products</h2>
               <ProductList onDelete={this.handleDelete} products={products} />
 
 
             </div>
+            
           );
     }
 }

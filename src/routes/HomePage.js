@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import { Button } from 'antd';
 import { PoweroffOutlined } from '@ant-design/icons';
 
+import BasePage from '../components/BasePage';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,11 +20,13 @@ const useStyles = makeStyles((theme) => ({
   }));
 
   
-function HomePage() {
+function HomePage(props) {
 
     const classes = useStyles();
 
     return (
+      <BasePage content="products" history ={props.history} >
+
         <div className={classes.root}>
                 <Paper elevation={3} >
                         <Button
@@ -34,6 +37,7 @@ function HomePage() {
                         </Button>
                 </Paper>
         </div>
+        </BasePage>
 
     );
 

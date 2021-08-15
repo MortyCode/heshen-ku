@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { List, Avatar,Layout } from 'antd';
+import BasePage from '../components/BasePage';
+
 
 
 const data = [
@@ -29,8 +31,8 @@ class ContextPage extends React.Component {
 
   render(){
         return (
-            <div>
-                <List
+          <BasePage content="products" history ={this.props.history} >
+          <List
                     itemLayout="horizontal"
                     dataSource={data}
                     renderItem={item => (
@@ -46,7 +48,7 @@ class ContextPage extends React.Component {
                     )}
                 />
     
-            </div>
+            </BasePage>
         );
     }
 

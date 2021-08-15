@@ -2,41 +2,35 @@ import React from 'react';
 import { Layout ,Menu,Typography,Divider, Switch} from 'antd';
 
 import 'antd/dist/antd.css';
-import SidePage from './SidePage';
-import ContextPage from './ContextPage';
+import SidePage from '../routes/SidePage';
 
 import { FileTextOutlined, FieldTimeOutlined, HomeOutlined } from '@ant-design/icons';
 
 
 const { Header, Sider,Footer, Content } = Layout;
 const { SubMenu } = Menu;
-const { Title,Text } = Typography;
+const { Title } = Typography;
 
 
-export default class Home extends React.Component {
+export default class BasePage extends React.Component {
 
     state = {
-        currentPage: 'home',
+        currentPage: 'HomePage',
     };
 
     constructor(props){
         super(props);
     }
 
-    handleDelete = (id)=> {
-        const { dispatch } = this.props;
-        dispatch({
-          type: 'products/delete',
-          payload: id,
-        });
-    }
 
     selectMenu =(e)=>{
         this.setState({ currentPage: e.key });
+        this.props.history.push(`/`+e.key);
     }
 
     render() {
         const { currentPage } = this.state;
+        const { children } = this.props;
         return (
             <Layout>
                 <Sider style={{backgroundColor:"#fff" ,textAlign:"center",paddingLeft:'30px'}} >
@@ -48,13 +42,13 @@ export default class Home extends React.Component {
                     <Header style={{backgroundColor:"#fff",display:'flex' }} >
 
                         <Menu onClick={this.selectMenu} selectedKeys={[currentPage]} mode="horizontal">
-                            <Menu.Item key="home" icon={<HomeOutlined />}>
+                            <Menu.Item key="HomePage" icon={<HomeOutlined />}>
                                 首页
                             </Menu.Item>
-                            <Menu.Item key="blog" icon={<FileTextOutlined />}>
+                            <Menu.Item key="BlogPage" icon={<FileTextOutlined />}>
                                 文章
                             </Menu.Item>
-                            <Menu.Item key="index" icon={<FieldTimeOutlined />}>
+                            <Menu.Item key="ContextPage" icon={<FieldTimeOutlined />}>
                                 目录
                             </Menu.Item>
 
@@ -63,7 +57,7 @@ export default class Home extends React.Component {
                     </Header>
 
                     <Content  style={{backgroundColor:"#fff",padding:'20px',minHeight: "600px"}}>
-                        <ContextPage/>
+                        {children}
                     </Content>
 
                     <Layout > 
